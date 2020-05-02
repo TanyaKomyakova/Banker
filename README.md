@@ -2,13 +2,13 @@
 
 ## Краткое описание
 
-02.05.2020 г. было проведено функциональное тестирование банковского приложения "Money Transfer". 
+02.05.2020 г. было проведено тестирование банковского приложения "Money Transfer". 
 На тестирование потрачено 1 час.
 "Money Transfer" описывает процесс пополнение счета VIP-клиента.
 В качестве входных данных в приложении выбраны следующие переменные:
-* Текущий баланс ```int```  со значением 2_000_000_000
-* Перевод денег ```int```  со значением 500_000_000
-* Итоговое значение ```int```  
+* Текущий баланс ```int``` (sum)  со значением 2_000_000_000
+* Перевод денег ```int``` (transaction) со значением 500_000_000
+* Итоговое значение ```int``` (balance)
 
 ```public class Main {
        public static void main(String[] args) {
@@ -30,6 +30,7 @@
 * Проведено функциональное тестирование приложения "Money Transfer" с использованием как входных, так и подобранных данных
 * Протестирована работа переменной ```int```
 * Проведено позитивное и негативное тестирование приложения "Money Transfer"
+* Проведено тестирование граничных значений переменной ```int```
 
 ## Результаты
 
@@ -50,7 +51,7 @@
    ```public class Main {
              public static void main(String[] args) {
                  int sum = 2_000_000_000;
-                 int transaction = 130_000_000;
+                 int transaction = 147_483_647;
                  int balance = sum + transaction;
          
                  System.out.println(balance);
@@ -58,11 +59,10 @@
              }
          }
       ```
-   
-   ```public class Main {
+   ``` public class Main {
           public static void main(String[] args) {
               int sum = 2_000_000_000;
-              int transaction = 140_000_000;
+              int transaction = 5_000_000;
               int balance = sum + transaction;
       
               System.out.println(balance);
@@ -71,42 +71,45 @@
       }
    ```
 Проведено 3 негативных теста, где менялось значение ```int``` transaction:
-```public class Main {
-             public static void main(String[] args) {
-                 int sum = 2_000_000_000;
-                 int transaction = 500_000_000;
-                 int balance = sum + transaction;
-         
-                 System.out.println(balance);
-         
-             }
-         }
-      ``` 
-```public class Main {
-             public static void main(String[] args) {
-                 int sum = 2_000_000_000;
-                 int transaction = 510_000_000;
-                 int balance = sum + transaction;
-         
-                 System.out.println(balance);
-         
-             }
-         }
-      ``` 
-```public class Main {
-             public static void main(String[] args) {
-                 int sum = 2_000_000_000;
-                 int transaction = 149_000_000;
-                 int balance = sum + transaction;
-         
-                 System.out.println(balance);
-         
-             }
-         }
-      ``` 
+    
+    public class Main {
+        public static void main(String[] args) {
+            int sum = 2_000_000_000;
+            int transaction = 500_000_000;
+            int balance = sum + transaction;
+    
+            System.out.println(balance);
+    
+        }
+    }
+
+``` public class Main {
+    public static void main(String[] args) {
+        int sum = 2_000_000_000;
+        int transaction = 147_483_648;
+        int balance = sum + transaction;
+
+        System.out.println(balance);
+
+    }
+}
+```
+
+``` public class Main {
+     public static void main(String[] args) {
+         int sum = 2_000_000_000;
+         int transaction = 148_483_647;
+         int balance = sum + transaction;
+ 
+         System.out.println(balance);
+ 
+     }
+ }
+```
 2. В результате тестирования выявлены следующие дефекты:
 
 
 ## Общие рекомендации
 
-При написании приложения для пополнения счета, необходимо использовать переменные с диапозоном значений подходящим для получения верного результата. 
+При написании приложения для пополнения счета, необходимо использовать те типы переменных с диапазоном значений, которые вмещают количество значений для получения верного результата
+Значение  ```int``` будет верным в том случае если, тип ```int```  принимает диапазон  от -2 147 483 648 до 2 147 483 647.. 
