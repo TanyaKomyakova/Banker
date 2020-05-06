@@ -36,78 +36,17 @@
 
 1. Проведено 3 успешных теста, где менялось значение ```int``` transaction:
   
-    ```public class Main {
-             public static void main(String[] args) {
-                 int sum = 2_000_000_000;
-                 int transaction = 50_000_000;
-                 int balance = sum + transaction;
-         
-                 System.out.println(balance);
-         
-             }
-         }
-      ``` 
+    * при ```int``` transaction = 50_000_000 значение ```int``` balance является валидным.
+    * при ```int``` transaction = 147_483_647 значение ```int``` balance является валидным.
+    * при ```int``` transaction = 5_000_000 значение ```int``` balance является валидным.
     
-   ```public class Main {
-             public static void main(String[] args) {
-                 int sum = 2_000_000_000;
-                 int transaction = 147_483_647;
-                 int balance = sum + transaction;
-         
-                 System.out.println(balance);
-         
-             }
-         }
-      ```
-   ``` public class Main {
-          public static void main(String[] args) {
-              int sum = 2_000_000_000;
-              int transaction = 5_000_000;
-              int balance = sum + transaction;
-      
-              System.out.println(balance);
-      
-          }
-      }
-   ```
 Проведено 3 негативных теста, где менялось значение ```int``` transaction:
     
-    public class Main {
-        public static void main(String[] args) {
-            int sum = 2_000_000_000;
-            int transaction = 500_000_000;
-            int balance = sum + transaction;
-    
-            System.out.println(balance);
-    
-        }
-    }
-
-``` public class Main {
-    public static void main(String[] args) {
-        int sum = 2_000_000_000;
-        int transaction = 147_483_648;
-        int balance = sum + transaction;
-
-        System.out.println(balance);
-
-    }
-}
-```
-
-``` public class Main {
-     public static void main(String[] args) {
-         int sum = 2_000_000_000;
-         int transaction = 148_483_647;
-         int balance = sum + transaction;
- 
-         System.out.println(balance);
- 
-     }
- }
-```
+   * при ```int``` transaction = 500_000_000 значение ```int``` balance является невалидным.
+   * при ```int``` transaction = 147_483_648 значение ```int``` balance является невалидным.
+   * при ```int``` transaction = 148_483_647 значение ```int``` balance является невалидным.
 2. В результате тестирования выявлены следующие дефекты:
-[int balance](https://github.com/TanyaKomyakova/Banker/issues/1)
+[см. ссылку](https://github.com/TanyaKomyakova/Banker/issues/1)
 
 ## Общие рекомендации
 
